@@ -9,15 +9,14 @@
 import UIKit
 
 class ProducerViewController: UIViewController , UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource  {
-    let authenticationService = AuthenticationServiceSingleton.sharedInstance
+    //MARK: Private Members
+    private let authenticationService = AuthenticationServiceSingleton.sharedInstance
     private var _queueList: NSMutableArray = []
+    let queueFactory = EasyWaitApp.sharedInstance.getQueueFctory()
     
     //MARK: Connectors
     @IBOutlet var qlistTableView: UITableView!
-    let queueFactory = EasyWaitApp.sharedInstance.getQueueFctory()
-
     @IBOutlet var queueNameTextField: UITextField!
-    
     @IBOutlet var userMessageWindow: UILabel!
     
     //MARK: Actions
@@ -41,6 +40,7 @@ class ProducerViewController: UIViewController , UITextFieldDelegate, UITableVie
     
     }
     
+    //MARK: Table View Handling
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int
     {
@@ -67,21 +67,13 @@ class ProducerViewController: UIViewController , UITextFieldDelegate, UITableVie
     }
 
     
+    //MARK: View Administration
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-    //override func tableView(_:)
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        queueNameTextField.delegate = self
-        self.qlistTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        self.qlistTableView.delegate = self
-    }
-
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         NSLog("observeValue: keyPath=%@", keyPath!)
         
@@ -94,8 +86,6 @@ class ProducerViewController: UIViewController , UITextFieldDelegate, UITableVie
             DispatchQueue.main.async {
                 self.qlistTableView.reloadData()
             }
-            NSLog("\(self._queueList.count)")
-            
         }
         else if (newKeyValue == AuthenticationEvents.TokenExpired)
         {
@@ -103,10 +93,17 @@ class ProducerViewController: UIViewController , UITextFieldDelegate, UITableVie
             alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
-
-        
-        NSLog(newKeyValue)
     }
+
+    //MARK: View Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        queueNameTextField.delegate = self
+        self.qlistTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        self.qlistTableView.delegate = self
+    }
+    
 
     override func viewDidDisappear(_ animated: Bool) {
         EasyWaitApp.sharedInstance.removeObserver(self, forKeyPath: "status")
@@ -127,7 +124,6 @@ class ProducerViewController: UIViewController , UITextFieldDelegate, UITableVie
         }
 
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

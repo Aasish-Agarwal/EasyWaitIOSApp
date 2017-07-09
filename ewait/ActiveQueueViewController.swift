@@ -9,23 +9,26 @@
 import UIKit
 
 class ActiveQueueViewController: UIViewController , UITableViewDelegate, UITableViewDataSource {
-    let  queueStateRetriever = QueueStateRetriever()
-    var queue : Queue
+    // MARK: - Privte Members
+    private let  queueStateRetriever = QueueStateRetriever()
+    private var queue : Queue
     private var _appointments: NSMutableArray = []
+    private var queueStateChanged = 0
+    private var queueStateRefreshed = 1
     
+    // MARK: - UI Connectors
     @IBOutlet var appointmentsTableView: UITableView!
-
     @IBOutlet var acceptAppointmentsSwitch: UISwitch!
-    
+    @IBOutlet var qViewControl: QueueViewerControl!
+
+    // MARK: - User Actions
     @IBAction func toggleAppointments(_ sender: UISwitch) {
-       queue.acceptAppointments(state: sender.isOn)
+        queue.acceptAppointments(state: sender.isOn)
         DispatchQueue.main.async {
             self.qViewControl.AcceptingAppointments = sender.isOn
         }
-        
-        
     }
-
+    
     @IBAction func refreshAppointmentList(_ sender: UIButton) {
         _appointments.removeAllObjects()
         queue.refreshAppointmentList()
@@ -33,7 +36,7 @@ class ActiveQueueViewController: UIViewController , UITableViewDelegate, UITable
             self.appointmentsTableView.reloadData()
         }
     }
-
+    
     @IBAction func stopSession(_ sender: UIButton) {
         queue.reset()
         queue.resetAllAppointments()
@@ -41,16 +44,8 @@ class ActiveQueueViewController: UIViewController , UITableViewDelegate, UITable
     @IBAction func moveNext(_ sender: UIButton) {
         queue.moveNext()
     }
-    private var queueStateChanged = 0
-    private var queueStateRefreshed = 1
-    
-    @IBOutlet var qViewControl: QueueViewerControl!
-    
-    required init?(coder aDecoder: NSCoder) {
-        self.queue = Queue(queueId: EasyWaitApp.sharedInstance.getActiveQueueId(), authenticationService: AuthenticationServiceSingleton.sharedInstance)
-        super.init(coder: aDecoder)
-    }
 
+    // MARK: - Table View Support
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int
     {
@@ -75,29 +70,13 @@ class ActiveQueueViewController: UIViewController , UITableViewDelegate, UITable
         NSLog("observeValue: keyPath=%@", "\(indexPath.row)")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+    // MARK: - View Administration
+    required init?(coder aDecoder: NSCoder) {
+        self.queue = Queue(queueId: EasyWaitApp.sharedInstance.getActiveQueueId(), authenticationService: AuthenticationServiceSingleton.sharedInstance)
+        super.init(coder: aDecoder)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        queueStateRetriever.addObserver(self, forKeyPath: "position", options: .new, context: &queueStateRefreshed)
-        queueStateRetriever.setQueueId(qId: EasyWaitApp.sharedInstance.getActiveQueueId())
-        queue.addObserver(self, forKeyPath: "status", options: .new, context: &queueStateChanged)
-        
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        queueStateRetriever.removeObserver(self, forKeyPath: "position")
-        queue.removeObserver(self, forKeyPath: "status")
-    }
-    
     func updateQueueStatusView()
     {
         DispatchQueue.main.async {
@@ -107,7 +86,7 @@ class ActiveQueueViewController: UIViewController , UITableViewDelegate, UITable
             self.qViewControl.QueueServiceRate = self.queueStateRetriever.getQueueServiceRate()
             self.qViewControl.AcceptingAppointments = self.queueStateRetriever.isAcceptingAppointments()
             self.qViewControl.NextPosition = self.queueStateRetriever.availablePosition()
-
+            
         }
     }
 
@@ -146,6 +125,32 @@ class ActiveQueueViewController: UIViewController , UITableViewDelegate, UITable
             
         }
     }
+
+    // MARK: - View Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        queueStateRetriever.addObserver(self, forKeyPath: "position", options: .new, context: &queueStateRefreshed)
+        queueStateRetriever.setQueueId(qId: EasyWaitApp.sharedInstance.getActiveQueueId())
+        queue.addObserver(self, forKeyPath: "status", options: .new, context: &queueStateChanged)
+        
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        queueStateRetriever.removeObserver(self, forKeyPath: "position")
+        queue.removeObserver(self, forKeyPath: "status")
+    }
+    
+    
     
     /*
     // MARK: - Navigation

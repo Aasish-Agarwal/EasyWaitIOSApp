@@ -9,21 +9,20 @@
 import UIKit
 
 class CustomerViewController: UIViewController , UITextFieldDelegate , UITableViewDelegate, UITableViewDataSource {
-
-    @IBOutlet var appointmentsTableView: UITableView!
-    @IBOutlet var bookingRefTextFld: UITextField!
-
-    @IBOutlet var queueIdTextField: UITextField!
-    
-    @IBOutlet var qViewControl: QueueViewerControl!
-    
-    let  queueStateRetriever = QueueStateRetriever()
-    var queue :Queue
-    var _mQueueId: String = ""
+    //MARK: Private Members
+    private let  queueStateRetriever = QueueStateRetriever()
+    private var queue :Queue
+    private var _mQueueId: String = ""
     private var _appointments: NSMutableArray = []
 
-    //MARK: Actions
+    //MARK: UI Connectors
+    @IBOutlet var appointmentsTableView: UITableView!
+    @IBOutlet var bookingRefTextFld: UITextField!
+    @IBOutlet var queueIdTextField: UITextField!
+    @IBOutlet var qViewControl: QueueViewerControl!
+    
 
+    //MARK: Actions
     @IBAction func makeAppointment(_ sender: UIButton) {
         var reference : String = self.bookingRefTextFld.text!
         reference = reference.replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression)
@@ -47,6 +46,7 @@ class CustomerViewController: UIViewController , UITextFieldDelegate , UITableVi
     @IBAction func observeQueue(_ sender: UITextField) {
         
     }
+    
     @IBAction func fetchQueueStatus(_ sender: UIButton) {
         let qidtextval : String = self.queueIdTextField.text!
         if ( qidtextval.characters.count > 0 )
@@ -65,7 +65,8 @@ class CustomerViewController: UIViewController , UITextFieldDelegate , UITableVi
         self.queueIdTextField.resignFirstResponder()
         
     }
-    
+
+    //MARK: Table View Management
     func tableView(_ tableView: UITableView,
                    numberOfRowsInSection section: Int) -> Int
     {
@@ -90,21 +91,8 @@ class CustomerViewController: UIViewController , UITextFieldDelegate , UITableVi
         NSLog("observeValue: keyPath=%@", "\(indexPath.row)")
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        self.queue.removeObserver(self, forKeyPath: "status")
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        self.queue.addObserver(self, forKeyPath: "status", options: .new, context:nil)
-        DispatchQueue.main.async {
-            self._appointments = self.queue.getAppointmentList()
-            self.appointmentsTableView.reloadData()
-        }
-    }
-    // MARK: - View Life Cycle
     
-    
-    
+    //MARK: View Administration
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -126,15 +114,6 @@ class CustomerViewController: UIViewController , UITextFieldDelegate , UITableVi
         }
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-        queueIdTextField.delegate = self
-        bookingRefTextFld.delegate = self
-        
-        queueStateRetriever.addObserver(self, forKeyPath: "position", options: .new, context: nil)
-    }
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         //print(keyPath! + " \(String(describing: change?[NSKeyValueChangeKey.newKey]))" )
         
@@ -142,7 +121,7 @@ class CustomerViewController: UIViewController , UITextFieldDelegate , UITableVi
         
         let blank:String  = ""
         let newKeyValue = "\(change?[NSKeyValueChangeKey.newKey] ?? blank)"
-
+        
         if ( newKeyValue == "AppointmentListUpdated")
         {
             _appointments = queue.getAppointmentList()
@@ -157,7 +136,28 @@ class CustomerViewController: UIViewController , UITextFieldDelegate , UITableVi
             self.present(alert, animated: true, completion: nil)
         }
     }
-  
+    
+    //MARK: View Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+        queueIdTextField.delegate = self
+        bookingRefTextFld.delegate = self
+        
+        queueStateRetriever.addObserver(self, forKeyPath: "position", options: .new, context: nil)
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        self.queue.removeObserver(self, forKeyPath: "status")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.queue.addObserver(self, forKeyPath: "status", options: .new, context:nil)
+        DispatchQueue.main.async {
+            self._appointments = self.queue.getAppointmentList()
+            self.appointmentsTableView.reloadData()
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
