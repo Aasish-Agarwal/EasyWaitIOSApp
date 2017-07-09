@@ -7,23 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D0CCBF91EDC2D9D00D9404C /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CCBF81EDC2D9D00D9404C /* Globals.swift */; };
+		1D0CCBFB1EDC326300D9404C /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CCBFA1EDC326300D9404C /* AuthenticationService.swift */; };
+		1D0CCBFD1EDC4B2600D9404C /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CCBFC1EDC4B2600D9404C /* NewUserViewController.swift */; };
+		1D0CCBFF1EDC4B3D00D9404C /* ExistingUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0CCBFE1EDC4B3D00D9404C /* ExistingUserViewController.swift */; };
+		1D19871C1ED1D1B700F3BDDC /* QueueViewerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D19871B1ED1D1B700F3BDDC /* QueueViewerControl.swift */; };
+		1D292A401EDF267F00F6598D /* PublishedQueues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D292A3F1EDF267F00F6598D /* PublishedQueues.swift */; };
 		1D324D8A1EC8A2ED00B6049A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D324D891EC8A2ED00B6049A /* AppDelegate.swift */; };
-		1D324D8C1EC8A2ED00B6049A /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D324D8B1EC8A2ED00B6049A /* FirstViewController.swift */; };
-		1D324D8E1EC8A2ED00B6049A /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D324D8D1EC8A2ED00B6049A /* SecondViewController.swift */; };
+		1D324D8C1EC8A2ED00B6049A /* ProducerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D324D8B1EC8A2ED00B6049A /* ProducerViewController.swift */; };
+		1D324D8E1EC8A2ED00B6049A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D324D8D1EC8A2ED00B6049A /* HomeViewController.swift */; };
 		1D324D911EC8A2ED00B6049A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D324D8F1EC8A2ED00B6049A /* Main.storyboard */; };
 		1D324D931EC8A2ED00B6049A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D324D921EC8A2ED00B6049A /* Assets.xcassets */; };
 		1D324D961EC8A2ED00B6049A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D324D941EC8A2ED00B6049A /* LaunchScreen.storyboard */; };
+		1D3766241ED987C100F82B27 /* QStateDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3766231ED987C100F82B27 /* QStateDataSource.swift */; };
+		1D727FE81ED09EE50022495F /* CustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D727FE71ED09EE50022495F /* CustomerViewController.swift */; };
+		1D727FEA1ED09F890022495F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D727FE91ED09F890022495F /* SettingsViewController.swift */; };
+		1D807EE71F07CCBD00D39B38 /* ActiveQueueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D807EE61F07CCBD00D39B38 /* ActiveQueueViewController.swift */; };
+		1D9103011EDC17190046B760 /* AppTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D9103001EDC17180046B760 /* AppTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D0CCBF81EDC2D9D00D9404C /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		1D0CCBFA1EDC326300D9404C /* AuthenticationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		1D0CCBFC1EDC4B2600D9404C /* NewUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
+		1D0CCBFE1EDC4B3D00D9404C /* ExistingUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExistingUserViewController.swift; sourceTree = "<group>"; };
+		1D19871B1ED1D1B700F3BDDC /* QueueViewerControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueViewerControl.swift; sourceTree = "<group>"; };
+		1D292A3F1EDF267F00F6598D /* PublishedQueues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishedQueues.swift; sourceTree = "<group>"; };
 		1D324D861EC8A2ED00B6049A /* ewait.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ewait.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D324D891EC8A2ED00B6049A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1D324D8B1EC8A2ED00B6049A /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		1D324D8D1EC8A2ED00B6049A /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		1D324D8B1EC8A2ED00B6049A /* ProducerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProducerViewController.swift; sourceTree = "<group>"; };
+		1D324D8D1EC8A2ED00B6049A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1D324D901EC8A2ED00B6049A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1D324D921EC8A2ED00B6049A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D324D951EC8A2ED00B6049A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D324D971EC8A2ED00B6049A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D3766231ED987C100F82B27 /* QStateDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QStateDataSource.swift; sourceTree = "<group>"; };
+		1D727FE71ED09EE50022495F /* CustomerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerViewController.swift; sourceTree = "<group>"; };
+		1D727FE91ED09F890022495F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		1D807EE61F07CCBD00D39B38 /* ActiveQueueViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveQueueViewController.swift; sourceTree = "<group>"; };
+		1D9103001EDC17180046B760 /* AppTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +78,42 @@
 		1D324D881EC8A2ED00B6049A /* ewait */ = {
 			isa = PBXGroup;
 			children = (
+				1DE58C931EFE67D100FA2831 /* services */,
+				1DE58C921EFE679000FA2831 /* controllers */,
 				1D324D891EC8A2ED00B6049A /* AppDelegate.swift */,
-				1D324D8B1EC8A2ED00B6049A /* FirstViewController.swift */,
-				1D324D8D1EC8A2ED00B6049A /* SecondViewController.swift */,
 				1D324D8F1EC8A2ED00B6049A /* Main.storyboard */,
 				1D324D921EC8A2ED00B6049A /* Assets.xcassets */,
 				1D324D941EC8A2ED00B6049A /* LaunchScreen.storyboard */,
 				1D324D971EC8A2ED00B6049A /* Info.plist */,
 			);
 			path = ewait;
+			sourceTree = "<group>";
+		};
+		1DE58C921EFE679000FA2831 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1D807EE61F07CCBD00D39B38 /* ActiveQueueViewController.swift */,
+				1D324D8D1EC8A2ED00B6049A /* HomeViewController.swift */,
+				1D9103001EDC17180046B760 /* AppTabBarController.swift */,
+				1D0CCBFC1EDC4B2600D9404C /* NewUserViewController.swift */,
+				1D727FE71ED09EE50022495F /* CustomerViewController.swift */,
+				1D19871B1ED1D1B700F3BDDC /* QueueViewerControl.swift */,
+				1D0CCBFE1EDC4B3D00D9404C /* ExistingUserViewController.swift */,
+				1D727FE91ED09F890022495F /* SettingsViewController.swift */,
+				1D324D8B1EC8A2ED00B6049A /* ProducerViewController.swift */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+		1DE58C931EFE67D100FA2831 /* services */ = {
+			isa = PBXGroup;
+			children = (
+				1D3766231ED987C100F82B27 /* QStateDataSource.swift */,
+				1D0CCBF81EDC2D9D00D9404C /* Globals.swift */,
+				1D0CCBFA1EDC326300D9404C /* AuthenticationService.swift */,
+				1D292A3F1EDF267F00F6598D /* PublishedQueues.swift */,
+			);
+			name = services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,9 +189,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D324D8E1EC8A2ED00B6049A /* SecondViewController.swift in Sources */,
+				1D807EE71F07CCBD00D39B38 /* ActiveQueueViewController.swift in Sources */,
+				1D727FE81ED09EE50022495F /* CustomerViewController.swift in Sources */,
+				1D3766241ED987C100F82B27 /* QStateDataSource.swift in Sources */,
+				1D19871C1ED1D1B700F3BDDC /* QueueViewerControl.swift in Sources */,
+				1D324D8E1EC8A2ED00B6049A /* HomeViewController.swift in Sources */,
+				1D0CCBFF1EDC4B3D00D9404C /* ExistingUserViewController.swift in Sources */,
 				1D324D8A1EC8A2ED00B6049A /* AppDelegate.swift in Sources */,
-				1D324D8C1EC8A2ED00B6049A /* FirstViewController.swift in Sources */,
+				1D9103011EDC17190046B760 /* AppTabBarController.swift in Sources */,
+				1D727FEA1ED09F890022495F /* SettingsViewController.swift in Sources */,
+				1D324D8C1EC8A2ED00B6049A /* ProducerViewController.swift in Sources */,
+				1D0CCBFD1EDC4B2600D9404C /* NewUserViewController.swift in Sources */,
+				1D292A401EDF267F00F6598D /* PublishedQueues.swift in Sources */,
+				1D0CCBF91EDC2D9D00D9404C /* Globals.swift in Sources */,
+				1D0CCBFB1EDC326300D9404C /* AuthenticationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +333,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = smartcreatives.ewait;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -286,6 +347,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = smartcreatives.ewait;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -308,6 +370,7 @@
 				1D324D9C1EC8A2ED00B6049A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
