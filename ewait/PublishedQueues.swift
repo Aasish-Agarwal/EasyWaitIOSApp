@@ -142,25 +142,39 @@ class QueueFactory: NSObject
         let token = _mAuthenticationService.getToken()
         let key = "Bearer \(token!))"
         urlRequest.setValue(key, forHTTPHeaderField: "Authorization")
-        print(key)
+        //print(key)
         urlRequest.httpBody = bodyData.data(using: String.Encoding.utf8);
         
         dataTask = defaultSession.dataTask(with: urlRequest) {
             data, response, error in
             if let error = error {
-                print(error.localizedDescription)
+                //print(error.localizedDescription)
             } else if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200 {
                     do {
                         guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary else {
                             throw JSONError.ConversionFailed
                         }
-                        print(json)
+                        //print(json)
                         self.status = "OK"
                     } catch let error as JSONError {
-                        print(error.rawValue)
+                        //print(error.rawValue)
                     } catch let error as NSError {
-                        print(error.debugDescription)
+                        //print(error.debugDescription)
+                    }
+                }
+                else if ( httpResponse.statusCode == 401 )
+                {
+                    do {
+                        guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary else {
+                            throw JSONError.ConversionFailed
+                        }
+                        //print(json)
+                        self.status = AuthenticationEvents.TokenExpired
+                    } catch let error as JSONError {
+                        //print(error.rawValue)
+                    } catch let error as NSError {
+                        //print(error.debugDescription)
                     }
                 }
                 else
@@ -205,28 +219,42 @@ class PublishedQueueList: NSObject
         let token = _mAuthenticationService.getToken()
         let key = "Bearer \(token!))"
         urlRequest.setValue(key, forHTTPHeaderField: "Authorization")
-        print(key)
+        //print(key)
         
         
         dataTask = defaultSession.dataTask(with: urlRequest) {
             data, response, error in
             if let error = error {
-                print(error.localizedDescription)
+                //print(error.localizedDescription)
             } else if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200 {
                     do {
                         guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary else {
                             throw JSONError.ConversionFailed
                         }
-                        print(json)
+                        //print(json)
                         let array = json["queues"] as! NSArray
                         self._queueList.removeAllObjects()
                         self._queueList = array.mutableCopy() as! NSMutableArray
                         self.status = "OK"
                     } catch let error as JSONError {
-                        print(error.rawValue)
+                        //print(error.rawValue)
                     } catch let error as NSError {
-                        print(error.debugDescription)
+                        //print(error.debugDescription)
+                    }
+                }
+                else if ( httpResponse.statusCode == 401 )
+                {
+                    do {
+                        guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary else {
+                            throw JSONError.ConversionFailed
+                        }
+                        //print(json)
+                        self.status = AuthenticationEvents.TokenExpired
+                    } catch let error as JSONError {
+                        //print(error.rawValue)
+                    } catch let error as NSError {
+                        //print(error.debugDescription)
                     }
                 }
                 else
@@ -244,7 +272,7 @@ class PublishedQueueList: NSObject
     }
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        print(keyPath! + " \(String(describing: change?[NSKeyValueChangeKey.newKey]))" )
+        //print(keyPath! + " \(String(describing: change?[NSKeyValueChangeKey.newKey]))" )
         
         if _mAuthenticationService.isAuthenticated()
         {

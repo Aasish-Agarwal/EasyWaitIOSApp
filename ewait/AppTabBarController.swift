@@ -24,7 +24,7 @@ class AppTabBarController: UITabBarController {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         let i: Int = (tabBar.items?.index(of: item))!
         
-        print("the selected index is : \(i)")
+        //print("the selected index is : \(i)")
         
  
     }

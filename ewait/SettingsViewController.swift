@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        print("Profile View Controller Loaded")
+        //print("Profile View Controller Loaded")
 
     }
 

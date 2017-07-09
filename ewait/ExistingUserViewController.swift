@@ -60,12 +60,12 @@ class ExistingUserViewController: UIViewController , UITextFieldDelegate {
         super.viewDidDisappear(animated)
     }
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        print(keyPath! + " \(String(describing: change?[NSKeyValueChangeKey.newKey]))" )
+        //print(keyPath! + " \(String(describing: change?[NSKeyValueChangeKey.newKey]))" )
         
         
         if authenticationService.isAuthenticated()
         {
-            print(authenticationService.getToken()!)
+            //print(authenticationService.getToken()!)
             persistCredentials()
             let alert = UIAlertController(title: "Sign In Successful", message: "You can now access featues available to authenticated users only", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))

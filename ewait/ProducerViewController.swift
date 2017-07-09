@@ -12,6 +12,7 @@ class ProducerViewController: UIViewController , UITextFieldDelegate, UITableVie
     let authenticationService = AuthenticationServiceSingleton.sharedInstance
     private var _queueList: NSMutableArray = []
     
+    //MARK: Connectors
     @IBOutlet var qlistTableView: UITableView!
     let queueFactory = EasyWaitApp.sharedInstance.getQueueFctory()
 
@@ -19,8 +20,24 @@ class ProducerViewController: UIViewController , UITextFieldDelegate, UITableVie
     
     @IBOutlet var userMessageWindow: UILabel!
     
+    //MARK: Actions
     @IBAction func actionAddQueue(_ sender: UIButton) {
-        queueFactory.addQueue(name: queueNameTextField.text!)
+        view.endEditing(true)
+        var qname: String = queueNameTextField.text!
+        qname = qname.replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression)
+        qname = qname.replacingOccurrences(of: "^\\s+", with: "", options: .regularExpression)
+        
+        if ( qname.characters.count >= 3 )
+        {
+            queueFactory.addQueue(name: queueNameTextField.text!)
+            queueNameTextField.text = nil
+        }
+        else
+        {
+            let alert = UIAlertController(title: "Error", message: "Please provide a Queue Name with 3 or more characters", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     
     }
     
@@ -79,6 +96,12 @@ class ProducerViewController: UIViewController , UITextFieldDelegate, UITableVie
             }
             NSLog("\(self._queueList.count)")
             
+        }
+        else if (newKeyValue == AuthenticationEvents.TokenExpired)
+        {
+            let alert = UIAlertController(title: StringsLib.AuthFailTitle, message: StringsLib.AuthMsgTokenExpired, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
 
         

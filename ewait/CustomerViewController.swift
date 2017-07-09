@@ -21,12 +21,27 @@ class CustomerViewController: UIViewController , UITextFieldDelegate , UITableVi
     var queue :Queue
     var _mQueueId: String = ""
     private var _appointments: NSMutableArray = []
-    
+
+    //MARK: Actions
+
     @IBAction func makeAppointment(_ sender: UIButton) {
-        let reference : String = self.bookingRefTextFld.text!
-        queue.makeAppointment(reference: reference)
-        bookingRefTextFld.text = nil
-        bookingRefTextFld.resignFirstResponder()
+        var reference : String = self.bookingRefTextFld.text!
+        reference = reference.replacingOccurrences(of: "\\s+$", with: "", options: .regularExpression)
+        reference = reference.replacingOccurrences(of: "^\\s+", with: "", options: .regularExpression)
+
+        if ( reference.characters.count >= 3 )
+        {
+            queue.makeAppointment(reference: reference)
+            bookingRefTextFld.text = nil
+            bookingRefTextFld.resignFirstResponder()
+        }
+        else
+        {
+            let alert = UIAlertController(title: "Error", message: "Please provide Booking Reference with 3 or more characters", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        
     }
     
     @IBAction func observeQueue(_ sender: UITextField) {
@@ -121,7 +136,7 @@ class CustomerViewController: UIViewController , UITextFieldDelegate , UITableVi
         queueStateRetriever.addObserver(self, forKeyPath: "position", options: .new, context: nil)
     }
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        print(keyPath! + " \(String(describing: change?[NSKeyValueChangeKey.newKey]))" )
+        //print(keyPath! + " \(String(describing: change?[NSKeyValueChangeKey.newKey]))" )
         
         updateQueueStatusView()
         

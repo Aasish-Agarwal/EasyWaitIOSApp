@@ -98,7 +98,7 @@ class AuthenticationServiceSingleton: NSObject, AuthenticationProtocol {
         dataTask = defaultSession.dataTask(with: urlRequest) {
             data, response, error in
             if let error = error {
-                print(error.localizedDescription)
+                //print(error.localizedDescription)
             } else if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200
                 {
@@ -107,12 +107,12 @@ class AuthenticationServiceSingleton: NSObject, AuthenticationProtocol {
                         guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary else {
                             throw JSONError.ConversionFailed
                         }
-                        print(json)
+                        //print(json)
                         self.updateTokenFromServerData(serverresponse: json)
                     } catch let error as JSONError {
-                        print(error.rawValue)
+                        //print(error.rawValue)
                     } catch let error as NSError {
-                        print(error.debugDescription)
+                        //print(error.debugDescription)
                     }
                 }
                 else
@@ -139,7 +139,7 @@ class AuthenticationServiceSingleton: NSObject, AuthenticationProtocol {
         dataTask = defaultSession.dataTask(with: urlRequest) {
             data, response, error in
             if let error = error {
-                print(error.localizedDescription)
+                //print(error.localizedDescription)
             } else if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200
                 {
@@ -148,12 +148,12 @@ class AuthenticationServiceSingleton: NSObject, AuthenticationProtocol {
                         guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary else {
                             throw JSONError.ConversionFailed
                         }
-                        print(json)
+                        //print(json)
                         self.updateTokenFromServerData(serverresponse: json)
                     } catch let error as JSONError {
-                        print(error.rawValue)
+                        //print(error.rawValue)
                     } catch let error as NSError {
-                        print(error.debugDescription)
+                        //print(error.debugDescription)
                     }
                 }
                 else

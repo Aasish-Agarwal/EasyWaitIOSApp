@@ -112,7 +112,7 @@ class ActiveQueueViewController: UIViewController , UITableViewDelegate, UITable
     }
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        print(keyPath! + " \(String(describing: change?[NSKeyValueChangeKey.newKey]))" )
+        //print(keyPath! + " \(String(describing: change?[NSKeyValueChangeKey.newKey]))" )
         if ( context == &queueStateChanged) {
             queueStateRetriever.setQueueId(qId: EasyWaitApp.sharedInstance.getActiveQueueId())
 
@@ -127,6 +127,13 @@ class ActiveQueueViewController: UIViewController , UITableViewDelegate, UITable
                 }
                 NSLog("\(self._appointments.count)")
             }
+            else if (newKeyValue == AuthenticationEvents.TokenExpired)
+            {
+                let alert = UIAlertController(title: StringsLib.AuthFailTitle, message: StringsLib.AuthMsgTokenExpired, preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+
         }
         
         if ( context == &queueStateRefreshed)

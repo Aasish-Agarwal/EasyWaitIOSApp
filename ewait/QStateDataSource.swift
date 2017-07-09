@@ -19,13 +19,13 @@ protocol QStateDataSourceProtocl {
 }
 
 class Queue: NSObject {
+    //MARK: Private Members
+
     private var _mLastOperationResponse: String = ""
     private var _mueueId: String = ""
     private var _mAppointmentList: NSMutableArray = []
-
-
     private var _mAuthenticationService:AuthenticationServiceSingleton
-    let defaultSession  = URLSession(configuration: URLSessionConfiguration.default)
+    private let defaultSession  = URLSession(configuration: URLSessionConfiguration.default)
     private var dataTask: URLSessionDataTask?
     private var appointmentsDataTask: URLSessionDataTask?
     dynamic var status: String = ""
@@ -72,22 +72,36 @@ class Queue: NSObject {
         appointmentsDataTask = defaultSession.dataTask(with: urlRequest) {
             data, response, error in
             if let error = error {
-                print(error.localizedDescription)
+                //print(error.localizedDescription)
             } else if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200 {
                     do {
                         guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary else {
                             throw JSONError.ConversionFailed
                         }
-                        print(json)
+                        //print(json)
                         let array = json["appointments"] as! NSArray
                         self._mAppointmentList.removeAllObjects()
                         self._mAppointmentList = array.mutableCopy() as! NSMutableArray
                         self.status = "AppointmentListUpdated"
                     } catch let error as JSONError {
-                        print(error.rawValue)
+                        //print(error.rawValue)
                     } catch let error as NSError {
-                        print(error.debugDescription)
+                        //print(error.debugDescription)
+                    }
+                }
+                else if ( httpResponse.statusCode == 401 )
+                {
+                    do {
+                        guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary else {
+                            throw JSONError.ConversionFailed
+                        }
+                        //print(json)
+                        self.status = AuthenticationEvents.TokenExpired
+                    } catch let error as JSONError {
+                        //print(error.rawValue)
+                    } catch let error as NSError {
+                        //print(error.debugDescription)
                     }
                 }
                 else
@@ -123,20 +137,20 @@ class Queue: NSObject {
         appointmentsDataTask = defaultSession.dataTask(with: urlRequest) {
             data, response, error in
             if let error = error {
-                print(error.localizedDescription)
+                //print(error.localizedDescription)
             } else if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200 {
                     do {
                         guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary else {
                             throw JSONError.ConversionFailed
                         }
-                        print(json)
+                        //print(json)
                         self.status = "Booking Successful"
                         self.refreshAppointmentList()
                     } catch let error as JSONError {
-                        print(error.rawValue)
+                        //print(error.rawValue)
                     } catch let error as NSError {
-                        print(error.debugDescription)
+                        //print(error.debugDescription)
                     }
                 }
                 else if ( httpResponse.statusCode == 401 )
@@ -145,12 +159,12 @@ class Queue: NSObject {
                         guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary else {
                             throw JSONError.ConversionFailed
                         }
-                        print(json)
+                        //print(json)
                         self.status = AuthenticationEvents.TokenExpired
                     } catch let error as JSONError {
-                        print(error.rawValue)
+                        //print(error.rawValue)
                     } catch let error as NSError {
-                        print(error.debugDescription)
+                        //print(error.debugDescription)
                     }
                 }
                 else
@@ -193,19 +207,19 @@ class Queue: NSObject {
         appointmentsDataTask = defaultSession.dataTask(with: urlRequest) {
             data, response, error in
             if let error = error {
-                print(error.localizedDescription)
+                //print(error.localizedDescription)
             } else if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200 {
                     do {
                         guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary else {
                             throw JSONError.ConversionFailed
                         }
-                        print(json)
+                        //print(json)
                         self.status = "OK"
                     } catch let error as JSONError {
-                        print(error.rawValue)
+                        //print(error.rawValue)
                     } catch let error as NSError {
-                        print(error.debugDescription)
+                        //print(error.debugDescription)
                     }
                 }
                 else if ( httpResponse.statusCode == 401 )
@@ -214,12 +228,12 @@ class Queue: NSObject {
                         guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary else {
                             throw JSONError.ConversionFailed
                         }
-                        print(json)
+                        //print(json)
                         self.status = AuthenticationEvents.TokenExpired
                     } catch let error as JSONError {
-                        print(error.rawValue)
+                        //print(error.rawValue)
                     } catch let error as NSError {
-                        print(error.debugDescription)
+                        //print(error.debugDescription)
                     }
                 }
                 else
@@ -269,19 +283,33 @@ class Queue: NSObject {
         dataTask = defaultSession.dataTask(with: urlRequest) {
             data, response, error in
             if let error = error {
-                print(error.localizedDescription)
+                //print(error.localizedDescription)
             } else if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200 {
                     do {
                         guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary else {
                             throw JSONError.ConversionFailed
                         }
-                        print(json)
+                        ////print(json)
                         self.status = "OK"
                     } catch let error as JSONError {
-                        print(error.rawValue)
+                        ////print(error.rawValue)
                     } catch let error as NSError {
-                        print(error.debugDescription)
+                        //print(error.debugDescription)
+                    }
+                }
+                else if ( httpResponse.statusCode == 401 )
+                {
+                    do {
+                        guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary else {
+                            throw JSONError.ConversionFailed
+                        }
+                        //print(json)
+                        self.status = AuthenticationEvents.TokenExpired
+                    } catch let error as JSONError {
+                        //print(error.rawValue)
+                    } catch let error as NSError {
+                        //print(error.debugDescription)
                     }
                 }
                 else
@@ -354,7 +382,7 @@ class QueueStateRetriever: NSObject, QStateDataSourceProtocl {
             data, response, error in
             // 7
             if let error = error {
-                print(error.localizedDescription)
+                //print(error.localizedDescription)
             } else if let httpResponse = response as? HTTPURLResponse {
                 if httpResponse.statusCode == 200 {
                     
@@ -362,14 +390,14 @@ class QueueStateRetriever: NSObject, QStateDataSourceProtocl {
                         guard let json = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary else {
                             throw JSONError.ConversionFailed
                         }
-                        print(json)
+                        //print(json)
                         self.updateQueueStatusFromServerData(qstatus: json)
                         
                         
                     } catch let error as JSONError {
-                        print(error.rawValue)
+                        //print(error.rawValue)
                     } catch let error as NSError {
-                        print(error.debugDescription)
+                        //print(error.debugDescription)
                     }
                 } else {
                     self.resetStateWhenError()
