@@ -101,15 +101,28 @@ class EasyWaitApp: NSObject
         let newKeyValue = "\(change?[NSKeyValueChangeKey.newKey] ?? blank)"
         
         if (context == &newQueueCreatedContext) {
-            NSLog("observeValue: newQueueCreatedContext")
-            NSLog(newKeyValue)
-            status = "QueueAdded"
-            _PublishedQueueList.refresh()
+            
+            if (newKeyValue == AuthenticationEvents.TokenExpired)
+            {
+                status = AuthenticationEvents.TokenExpired
+            } else
+            {
+                NSLog("observeValue: newQueueCreatedContext")
+                NSLog(newKeyValue)
+                status = "QueueAdded"
+                _PublishedQueueList.refresh()
+            }
         }
         if (context == &queueListUpdated && newKeyValue == "OK") {
-            NSLog("observeValue: queueListUpdated")
-            NSLog(newKeyValue)
-            status = "QueueListUpdated"
+            if (newKeyValue == AuthenticationEvents.TokenExpired)
+            {
+                status = AuthenticationEvents.TokenExpired
+            } else
+            {
+                NSLog("observeValue: queueListUpdated")
+                NSLog(newKeyValue)
+                status = "QueueListUpdated"
+            }
         }
     }
 }
