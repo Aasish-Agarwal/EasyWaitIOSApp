@@ -216,68 +216,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Identify Yourself" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="-2.5" y="318" width="380" height="31.5"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="27"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="highlightedColor" cocoaTouchSystemColor="darkTextColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WaQ-gP-2qD">
-                                <rect key="frame" x="1" y="346" width="375" height="56"/>
-                                <color key="backgroundColor" red="0.40471702814102173" green="0.74679827690124512" blue="0.90963798761367798" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="1"/>
-                                <state key="normal" title="Customer" image="customer"/>
-                                <connections>
-                                    <action selector="switchToCustomerTab:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="ESw-71-7Eh"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="I am a service provider, and I would like to manage my Queues" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hg1-yu-8rF">
-                                <rect key="frame" x="0.0" y="203" width="375" height="53"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XX3-t1-MxA">
-                                <rect key="frame" x="1" y="264" width="375" height="58"/>
-                                <color key="backgroundColor" red="0.40471702814102173" green="0.74679827690124512" blue="0.90963798761367798" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="1"/>
-                                <state key="normal" title="Producer" image="producer"/>
-                                <connections>
-                                    <action selector="switchToProducerTab:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="Qel-EE-1iv"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="I am a customer and I would like to observe a Queue" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JJi-A4-jEU">
-                                <rect key="frame" x="10" y="410" width="356" height="81"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ewait-flow" translatesAutoresizingMaskIntoConstraints="NO" id="D9M-ic-CnM">
+                                <rect key="frame" x="0.0" y="20" width="375" height="546"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="zEq-FU-wV5" firstAttribute="width" secondItem="QS5-Rx-YEW" secondAttribute="width" constant="5" id="1We-Py-e7u"/>
-                            <constraint firstItem="hg1-yu-8rF" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="2GL-op-WzW"/>
-                            <constraint firstItem="hg1-yu-8rF" firstAttribute="width" secondItem="QS5-Rx-YEW" secondAttribute="width" id="8F8-IB-evi"/>
-                            <constraint firstItem="WaQ-gP-2qD" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" id="CzJ-io-C9y"/>
-                            <constraint firstItem="JJi-A4-jEU" firstAttribute="top" secondItem="WaQ-gP-2qD" secondAttribute="bottom" id="EHt-WQ-E8M"/>
-                            <constraint firstItem="zEq-FU-wV5" firstAttribute="top" secondItem="XX3-t1-MxA" secondAttribute="bottom" id="RPJ-3B-dKd"/>
-                            <constraint firstItem="WaQ-gP-2qD" firstAttribute="width" secondItem="QS5-Rx-YEW" secondAttribute="width" id="X8h-sT-om8"/>
-                            <constraint firstItem="JJi-A4-jEU" firstAttribute="width" secondItem="QS5-Rx-YEW" secondAttribute="width" id="dVe-DS-67f"/>
-                            <constraint firstItem="XX3-t1-MxA" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="dXK-6W-2Cz"/>
-                            <constraint firstItem="zEq-FU-wV5" firstAttribute="centerY" secondItem="QS5-Rx-YEW" secondAttribute="centerY" id="eYo-Wm-V38"/>
-                            <constraint firstItem="WaQ-gP-2qD" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="g8r-2C-Aku"/>
-                            <constraint firstItem="XX3-t1-MxA" firstAttribute="top" secondItem="hg1-yu-8rF" secondAttribute="bottom" id="h7s-Zh-doP"/>
-                            <constraint firstItem="zEq-FU-wV5" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="ibK-6n-TrC"/>
-                            <constraint firstItem="XX3-t1-MxA" firstAttribute="width" secondItem="QS5-Rx-YEW" secondAttribute="width" id="qjT-SC-Jrd"/>
-                            <constraint firstItem="JJi-A4-jEU" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="z3Q-iN-ATG"/>
+                            <constraint firstItem="Djb-ko-YwX" firstAttribute="top" secondItem="D9M-ic-CnM" secondAttribute="bottom" constant="5" id="8Eo-ak-7zr"/>
+                            <constraint firstItem="D9M-ic-CnM" firstAttribute="width" secondItem="QS5-Rx-YEW" secondAttribute="width" id="VD5-4O-vci"/>
+                            <constraint firstItem="D9M-ic-CnM" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-16" id="esQ-nZ-GiR"/>
+                            <constraint firstItem="D9M-ic-CnM" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="wbf-6u-eir"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="home" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="98" y="220"/>
+            <point key="canvasLocation" x="-426.39999999999998" y="279.31034482758622"/>
         </scene>
         <!--Profile-->
         <scene sceneID="4tT-XV-aWg">
@@ -644,6 +599,7 @@
     </scenes>
     <resources>
         <image name="customer" width="25" height="25"/>
+        <image name="ewait-flow" width="1800" height="1550"/>
         <image name="home" width="25" height="25"/>
         <image name="producer" width="25" height="25"/>
         <image name="user" width="25" height="25"/>
