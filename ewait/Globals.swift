@@ -16,6 +16,7 @@ struct GlobalConstants
 struct AuthenticationEvents
 {
     static let TokenExpired: String = "Authentication Token Expired"
+    static let NotAuthenticated: String = "Not Authenticated"
 }
 
 struct QueueEvents
@@ -31,6 +32,9 @@ struct StringsLib
 {
     static let AuthFailTitle: String = "Authorization Failure"
     static let AuthMsgTokenExpired: String = "Session Expired. Sign In and Retry "
+    
+    static let TitleNoAuth: String = "Sign In Required For This Operation"
+    static let MsgNoAuth: String = "Sign In Required For This Operation"
     
 
 

@@ -118,6 +118,7 @@ class Queue: NSObject {
     {
         if  _mAuthenticationService.isAuthenticated() != true
         {
+            self.status = AuthenticationEvents.NotAuthenticated
             return
         }
         
@@ -189,6 +190,7 @@ class Queue: NSObject {
     {
         if  _mAuthenticationService.isAuthenticated() != true
         {
+            self.status = AuthenticationEvents.NotAuthenticated
             return
         }
         
@@ -267,6 +269,8 @@ class Queue: NSObject {
     {
         if  _mAuthenticationService.isAuthenticated() != true
         {
+            self.status = AuthenticationEvents.NotAuthenticated
+
             return
         }
         

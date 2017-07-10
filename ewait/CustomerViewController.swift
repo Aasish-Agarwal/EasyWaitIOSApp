@@ -40,7 +40,7 @@ class CustomerViewController: UIViewController , UITextFieldDelegate , UITableVi
             alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
-        
+        view.endEditing(true)
     }
     
     @IBAction func observeQueue(_ sender: UITextField) {
@@ -129,9 +129,16 @@ class CustomerViewController: UIViewController , UITextFieldDelegate , UITableVi
                 self.appointmentsTableView.reloadData()
             }
             NSLog("\(self._appointments.count)")
-        } else if (newKeyValue == AuthenticationEvents.TokenExpired)
+        }
+        else if (newKeyValue == AuthenticationEvents.TokenExpired)
         {
             let alert = UIAlertController(title: StringsLib.AuthFailTitle, message: StringsLib.AuthMsgTokenExpired, preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else if (newKeyValue == AuthenticationEvents.NotAuthenticated)
+        {
+            let alert = UIAlertController(title: StringsLib.TitleNoAuth, message: StringsLib.MsgNoAuth, preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
