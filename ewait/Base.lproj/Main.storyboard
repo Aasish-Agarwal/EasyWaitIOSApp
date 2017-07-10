@@ -216,7 +216,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="ewait-flow" translatesAutoresizingMaskIntoConstraints="NO" id="D9M-ic-CnM">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="application-flow" translatesAutoresizingMaskIntoConstraints="NO" id="D9M-ic-CnM">
                                 <rect key="frame" x="0.0" y="20" width="375" height="546"/>
                             </imageView>
                         </subviews>
@@ -598,8 +598,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="application-flow" width="512" height="512"/>
         <image name="customer" width="25" height="25"/>
-        <image name="ewait-flow" width="1800" height="1550"/>
         <image name="home" width="25" height="25"/>
         <image name="producer" width="25" height="25"/>
         <image name="user" width="25" height="25"/>
